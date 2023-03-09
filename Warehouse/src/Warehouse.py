@@ -1,15 +1,13 @@
+from Car import Car
 
 
 class Warehouse:
+    parking_slots: list[Car] = []
 
-
-    parking_slots = []
-
-    def __init__(self, capacity):
+    def __init__(self, capacity: int):
         self.capacity = capacity
 
-
-    def park_car(self, car):
+    def park_car(self, car: Car) -> None:
         """
         @brief parks a car in the warehouse
         @param car to park
@@ -17,7 +15,7 @@ class Warehouse:
         Warehouse.parking_slots.append(car)
         print("car parked")
 
-    def get_car(self, index):
+    def get_car(self, index: int) -> Car:
         """
         @brief gets the parked car at index
         @param index of the parked car
@@ -27,4 +25,3 @@ class Warehouse:
         #     print("error")
         # else:
         return Warehouse.parking_slots.pop(index)
-
