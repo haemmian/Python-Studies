@@ -1,5 +1,4 @@
 from Car import Car
-from Car import Race_Car
 
 
 class Warehouse:
@@ -17,7 +16,7 @@ class Warehouse:
         Warehouse.parking_slots.append(car)
         print("car parked")
 
-    def get_car(self, index: int):
+    def get_car(self, index: int) -> Car:
         """
         @brief gets the parked car at index
         @param index of the parked car
@@ -25,7 +24,9 @@ class Warehouse:
         """
         if Warehouse.parking_slots:
             print(f"Get car at parking slot {index}")
-            return Warehouse.parking_slots.pop(index)
+            tmp_car = Warehouse.parking_slots[index]
+            Warehouse.parking_slots[index] = 0
+            return tmp_car
         else:
             print("no Cars are in the warehouse!")
 
