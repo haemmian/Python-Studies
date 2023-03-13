@@ -1,19 +1,19 @@
 from Car import Car
+from Car import Race_Car
+
 
 class Warehouse:
-
-
     parking_slots: list[Car] = []
 
     def __init__(self, capacity: int):
         self.capacity = capacity
-
 
     def park_car(self, car: Car):
         """
         @brief parks a car in the warehouse
         @param car to park
         """
+
         Warehouse.parking_slots.append(car)
         print("car parked")
 
@@ -45,3 +45,14 @@ class Warehouse:
         @return Capacity
         """
         return self.capacity
+
+    def get_all_cars_sorted(self) -> list[Car]:
+        ls = self.parking_slots.copy()
+        ls.sort(key=lambda x: x.vehicle_registration_number)
+        self.parking_slots.clear()
+        return ls
+
+    def get_all_cars(self) -> list[Car]:
+        ls = self.parking_slots.copy()
+        self.parking_slots.clear()
+        return ls
