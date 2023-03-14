@@ -8,7 +8,7 @@ class Car:
     Class of Car
     """
 
-    def __init__(self, value: int, capacity: int, engine_power: int, colour: str,
+    def __init__(self, value: int, capacity: int, engine_power: int, colour: str,  # pylint: disable=too-many-arguments
                  vehicle_registration_number: int, brand: str):
         self.brand = brand
         self.vehicle_registration_number = vehicle_registration_number
@@ -29,7 +29,7 @@ class RaceCar(Car):
     Class of Race-Car
     """
 
-    def __init__(self, value: int, capacity: int, engine_power: int, colour: str,
+    def __init__(self, value: int, capacity: int, engine_power: int, colour: str,  # pylint: disable=too-many-arguments
                  vehicle_registration_number: int, brand: str, top_speed: int):
         self.top_speed = top_speed
 
