@@ -26,5 +26,3 @@ audi: Optional[Car] = warehouse.get_car(1)
 
 if isinstance(audi, Car):
     print("retrieved Car: ", audi.brand)
-
-print(warehouse.get_all_cars_sorted())

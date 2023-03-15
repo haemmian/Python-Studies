@@ -1,5 +1,5 @@
 """ This file is the Warehouse Class-file """
-from typing import Optional, Union  # used against mypy
+from typing import Optional  # used against mypy
 from car import Car
 
 
@@ -7,9 +7,10 @@ class Warehouse:
     """
     The Warehouse class which keeps all the cars
     """
-    parking_slots: list[Union[Car, None]] = []
+    __slots__ = ["capacity", "parking_slots"]
 
     def __init__(self, capacity: int):
+        self.parking_slots: list[Optional[Car]] = []
         self.capacity = capacity
 
     def park_car(self, car: Car):
@@ -35,8 +36,7 @@ class Warehouse:
         self.parking_slots[index] = None
         return tmp_car
 
-
-    def current_amount_of_cars(self):
+    def current_amount_of_cars(self) -> Optional[int]:
         """
         @brief gets the number of cars in the warehouse
         @return number of cars in the warehouse
@@ -45,7 +45,7 @@ class Warehouse:
             print("no Cars are in the warehouse!")
             return None
 
-        return len(Warehouse.parking_slots)
+        return len(self.parking_slots)
 
     def warehouse_capacity(self) -> int:
         """

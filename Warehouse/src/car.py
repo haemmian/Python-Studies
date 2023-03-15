@@ -7,6 +7,8 @@ class Car:
     """
     Class of Car
     """
+    __slots__ = ["brand", "vehicle_registration_number", "colour", "engine_power",
+                 "value", "capacity"]
 
     def __init__(self, value: int, capacity: int, engine_power: int, colour: str,  # pylint: disable=too-many-arguments
                  vehicle_registration_number: int, brand: str):
@@ -28,6 +30,8 @@ class RaceCar(Car):
     """
     Class of Race-Car
     """
+    __slots__ = ["brand", "vehicle_registration_number", "colour", "engine_power",
+                 "value", "capacity", "top_speed"]
 
     def __init__(self, value: int, capacity: int, engine_power: int, colour: str,  # pylint: disable=too-many-arguments
                  vehicle_registration_number: int, brand: str, top_speed: int):
