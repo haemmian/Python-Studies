@@ -12,7 +12,6 @@ class Warehouse:
     def __init__(self, capacity: int):
         self._parking_slots: list[Optional[Car]] = []
         self._capacity = capacity
-        self._current_amount_of_cars = 0
 
     def park_car(self, car: Car):
         """
@@ -20,7 +19,6 @@ class Warehouse:
         @param car to park
         """
         self._parking_slots.append(car)
-        self._current_amount_of_cars += 1
         print("car parked")
 
     def get_car(self, index: int) -> Optional[Car]:
@@ -42,7 +40,6 @@ class Warehouse:
 
         # By adding None to this index, the parking slots will not be shifted
         self._parking_slots[index] = None
-        self._current_amount_of_cars -= 1
         return tmp_car
 
     def current_amount_of_cars(self) -> Optional[int]:
@@ -50,11 +47,7 @@ class Warehouse:
         @brief gets the number of cars in the warehouse
         @return number of cars in the warehouse
         """
-        if not self._current_amount_of_cars:
-            print("no Cars are in the warehouse!")
-            return 0
-
-        return self._current_amount_of_cars
+        return len([x for x in self._parking_slots if x is not None])
 
     def warehouse_capacity(self) -> int:
         """
@@ -71,7 +64,6 @@ class Warehouse:
         tmp_car_list = [item for item in self._parking_slots if item is not None]
         tmp_car_list.sort(key=lambda x: x.vehicle_registration_number())
         self._parking_slots.clear()
-        self._current_amount_of_cars = 0
         return tmp_car_list
 
     def get_all_cars(self) -> list[Car]:
@@ -81,5 +73,4 @@ class Warehouse:
         """
         tmp_car_list = [item for item in self._parking_slots if item is not None]
         self._parking_slots.clear()
-        self._current_amount_of_cars = 0
         return tmp_car_list
