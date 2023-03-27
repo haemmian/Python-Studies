@@ -1,17 +1,13 @@
 """This is the Main file"""
 from typing import Optional
-from car import Car
-from car import RaceCar
+import car
 from warehouse import Warehouse
 
-# Car initialization (value, capacity, engine Power, colour, vehicle ID, (TopSpeed,) Brand)
+# Car initialization (value, capacity, engine Power, colour, car ID, Brand, (TopSpeed))
 
-car_one: Car = Car(value=50000, capacity=5, engine_power=200, colour="black",
-                   vehicle_registration_number=445445, brand="BMW")
-car_two: Car = Car(value=45000, capacity=5, engine_power=180, colour="turquoise",
-                   vehicle_registration_number=987654, brand="Audi")
-car_three: RaceCar = RaceCar(value=200000, capacity=2, engine_power=400, colour="red",
-                             vehicle_registration_number=111777, top_speed=300, brand="Ferrari")
+car_one: car.Car = car.Car(50000, 5, 200, "black", 445445, "BMW")
+car_two: car.Car = car.Car(5000, 5, 180, "turquoise", 987654, "Audi")
+car_three: car.RaceCar = car.RaceCar(200000, 2, 400, "red", 111777, "Ferrari", 300)
 warehouse: Warehouse = Warehouse(15)
 
 warehouse.park_car(car_one)
@@ -22,7 +18,9 @@ print("Current amount of cars in the warehouse:", warehouse.current_amount_of_ca
 
 print("max. capacity of Warehouse: ", warehouse.warehouse_capacity())
 
-audi: Optional[Car] = warehouse.get_car(1)
+audi: Optional[car.Car] = warehouse.get_car(1)
 
-if isinstance(audi, Car):
+print("Current amount of cars in the warehouse:", warehouse.current_amount_of_cars())
+
+if isinstance(audi, car.Car):
     print("retrieved Car: ", audi.brand)

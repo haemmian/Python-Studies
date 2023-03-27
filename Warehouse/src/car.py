@@ -7,22 +7,34 @@ class Car:
     """
     Class of Car
     """
-    __slots__ = ["brand", "vehicle_registration_number", "colour", "engine_power",
-                 "value", "capacity"]
-
-    def __init__(self, value: int, capacity: int, engine_power: int, colour: str,  # pylint: disable=too-many-arguments
-                 vehicle_registration_number: int, brand: str):
-        self.brand = brand
-        self.vehicle_registration_number = vehicle_registration_number
-        self.colour = colour
-        self.engine_power = engine_power
-        self.value = value
-        self.capacity = capacity
+    __slots__ = ["_brand", "_vehicle_registration_number", "_colour", "_engine_power",
+                 "_value", "_capacity"]
+    # pylint: disable=too-many-arguments
+    _value: int
+    _capacity: int
+    _engine_power: int
+    _colour: str
+    _vehicle_registration_number: int
+    _brand: str
 
     def __str__(self) -> str:
-        return f"Value: {self.value}, Capacity: {self.capacity}, Engine power: " \
-               f"{self.engine_power}, colour: {self.colour}, Vehicle ID: " \
-               f"{self.vehicle_registration_number}, \t Brand: {self.brand}"
+        return f"Value: {self._value}, Capacity: {self._capacity}, Engine power: " \
+               f"{self._engine_power}, colour: {self._colour}, Vehicle ID: " \
+               f"{self._vehicle_registration_number}, \t Brand: {self._brand}"
+
+    @property
+    def brand(self) -> str:
+        """
+        Returns the brand
+        """
+        return self._brand
+
+    @property
+    def vehicle_registration_number(self) -> int:
+        """
+        Returns the Registration Number
+        """
+        return self._vehicle_registration_number
 
 
 @dataclass
@@ -30,19 +42,25 @@ class RaceCar(Car):
     """
     Class of Race-Car
     """
-    __slots__ = ["brand", "vehicle_registration_number", "colour", "engine_power",
-                 "value", "capacity", "top_speed"]
+    __slots__ = ["_brand", "_vehicle_registration_number", "_colour", "_engine_power",
+                 "_value", "_capacity", "_top_speed"]
+    # pylint: disable=too-many-arguments
+    _value: int
+    _capacity: int
+    _engine_power: int
+    _colour: str
+    _vehicle_registration_number: int
+    _brand: str
+    _top_speed: int
 
-    def __init__(self, value: int, capacity: int, engine_power: int, colour: str,  # pylint: disable=too-many-arguments
-                 vehicle_registration_number: int, brand: str, top_speed: int):
-        self.top_speed = top_speed
+    def __post_init__(self):
 
-        super().__init__(value=value, capacity=capacity, engine_power=engine_power,
-                         colour=colour, vehicle_registration_number=vehicle_registration_number,
-                         brand=brand)
+        super().__init__(self._value, self._capacity, self._engine_power,
+                         self._colour, self._vehicle_registration_number,
+                         self._brand)
 
     def __str__(self) -> str:
-        return f"Value: {self.value}, Capacity: {self.capacity}, Engine power: " \
-               f"{self.engine_power}, colour: {self.colour}, Vehicle ID: " \
-               f"{self.vehicle_registration_number}, \t Brand: {self.brand}" \
-               f", Top speed: {self.top_speed}"
+        return f"Value: {self._value}, Capacity: {self._capacity}, Engine power: " \
+               f"{self._engine_power}, colour: {self._colour}, Vehicle ID: " \
+               f"{self._vehicle_registration_number}, \t Brand: {self._brand}" \
+               f", Top speed: {self._top_speed}"
